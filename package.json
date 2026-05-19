@@ -1,9 +1,0 @@
-{
-  "name": "fortune-reader",
-  "version": "1.0.0",
-  "description": "AI Fortune Reader - Global mystical fortune telling",
-  "scripts": {
-    "dev": "vercel dev"
-  },
-  "dependencies": {}
-}
