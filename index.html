@@ -171,7 +171,7 @@ radial-gradient(1px 1px at 75% 55%,rgba(255,255,255,0.1),transparent);pointer-ev
     <!-- Pay -->
     <div class="pay-section">
       <div class="pay-btn">
-        <button class="pay-btn-inner" id="payBtn" onclick="startReading()" disabled>
+        <button class="pay-btn-inner" id="payBtn" onclick="startReading()">
           ✦ Reveal My Fortune <span class="price">$2.99</span>
         </button>
       </div>
@@ -263,19 +263,19 @@ function resetPhoto() {
 }
 
 function checkReady() {
+  const ready = !!currentBase64;
   const name = document.getElementById('userName').value.trim();
-  const ready = !!currentBase64 && name.length > 0;
-  document.getElementById('payBtn').disabled = !ready;
-  if (ready) {
-    document.getElementById('payBtn').innerHTML = `✦ Read ${name}'s Fortune <span class="price">$2.99</span>`;
-  } else {
-    document.getElementById('payBtn').innerHTML = `✦ Reveal My Fortune <span class="price">$2.99</span>`;
-  }
+  document.getElementById('payBtn').innerHTML = ready 
+    ? `✦ Reveal My Fortune <span class="price">$2.99</span>`
+    : `✦ Upload a photo first <span class="price">$2.99</span>`;
 }
 
 function startReading() {
-  if (document.getElementById('payBtn').disabled) return;
-  const name = document.getElementById('userName').value.trim();
+  if (!currentBase64) {
+    alert('Please upload a photo first!');
+    return;
+  }
+  const name = document.getElementById('userName').value.trim() || 'Seeker';
   const birthday = document.getElementById('userBirthday').value.trim();
 
   // Save state to sessionStorage for after payment
