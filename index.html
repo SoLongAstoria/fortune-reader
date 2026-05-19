@@ -314,7 +314,7 @@ async function handleReturn() {
   }, 3000);
 
   try {
-    const resp = await fetch('/api/read-fortune', {
+    const resp = await fetch('/read-fortune', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imageBase64, readingType: type, name, birthday })
